@@ -62,7 +62,7 @@ export default function About() {
 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
   <div className="rounded-xl overflow-hidden shadow-lg transition duration-500 hover:scale-105 hover:shadow-[0_0_10px_rgba(37,99,235,0.6)]">
     <img
-      src="/assests/three.jpg"
+      src="/assets/blog/three.jpg"
       alt="Sample 1"
       className="w-full h-64 object-contain"
     />
@@ -70,7 +70,7 @@ export default function About() {
 
   <div className="rounded-xl overflow-hidden shadow-lg transition duration-500 hover:scale-105 hover:shadow-[0_0_10px_rgba(37,99,235,0.6)]">
     <img
-      src="/assests/two.jpg"
+      src="/assets/blog/two.jpg"
       alt="Sample 2"
       className="w-full h-64 object-contain"
     />
@@ -78,7 +78,7 @@ export default function About() {
 
   <div className="rounded-xl overflow-hidden shadow-lg transition duration-500 hover:scale-105 hover:shadow-[0_0_10px_rgba(37,99,235,0.6)]">
     <img
-      src="/assests/one.jpg"
+      src="/assets/blog/one.jpg"
       alt="Sample 3"
       className="w-full h-64 object-cover"
     />

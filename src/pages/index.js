@@ -5,30 +5,51 @@ import Link from "next/link";
 import Image from "next/image";
 import { Database, MessageSquare, Users, Calendar, Briefcase, Heart } from "lucide-react";
 import { motion } from "framer-motion";
-
-
-// Import Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules"; // ✅ works in Swiper 9+
 import "swiper/css";
-
+import "swiper/css/autoplay";
 export default function Home() {
+
+  const images = [
+    "cu.jpg",
+    "dcrust.jpg",
+    "gju.jpeg",
+    "lingyas.jpeg",
+    "mdu.avif",
+    "ymca.jpg", // ✅ fixed extension
+  ];
+
   return (
     <div className="min-h-screen text-gray-900 bg-white relative overflow-hidden">
       <Navbar />
+        <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+  {/* Background Video (Full Width & Height) */}
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover z-0"
+    style={{ filter: "brightness(0.7) blur(0.7px)" }} // Slightly darken the video for better text contrast
+  >
+    <source src="/assets/Videos/event-04.mp4" type="video/mp4" />
+  </video>
 
-      <main className="pt-28 max-w-6xl mx-auto px-6">
-       {/* Hero Section */}
-<section className="relative w-full min-h-[90vh]  from-indigo-50 to-blue-50 flex items-center overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6 text-center md:text-left flex flex-col justify-center z-10">
-    <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+  {/* Overlay (optional – remove if you don’t want any tint) */}
+  <div className="absolute inset-0 bg-black/30 z-10" />
+
+  {/* Content */}
+  <div className="relative z-20 max-w-7xl mx-auto px-6 text-center md:text-left">
+    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
       Build Bridges between{" "}
-      <span className="text-indigo-600">Students</span>,{" "}
-      <span className="text-indigo-600">Colleges</span> &{" "}
-      <span className="text-indigo-600">Alumni</span>
+      <span className="text-indigo-300">Students</span>,{" "}
+      <span className="text-indigo-300">Colleges</span> &{" "}
+      <span className="text-indigo-300">Alumni</span>
     </h1>
-    <p className="text-lg md:text-xl text-gray-600 mb-6 max-w-3xl">
-      Wesntr connects students, colleges, alumni and companies mentorship, placements and community, all in one place.
+    <p className="text-lg md:text-xl text-indigo-100 mb-6 max-w-3xl drop-shadow">
+      Wesntr connects students, colleges, alumni and companies mentorship,
+      placements and community, all in one place.
     </p>
     <div className="flex justify-center md:justify-start gap-4">
       <Link
@@ -45,63 +66,45 @@ export default function Home() {
       </Link>
     </div>
   </div>
-
-  {/* Right-side Cartoon Image */}
-  <div className="absolute right-0 bottom-0 md:relative md:flex md:justify-center md:items-center w-full md:w-1/2 h-full">
-    <div className="relative w-72 h-72 md:w-130 md:h-130 mx-auto">
-      <Image
-        src="/assests/hero6.jpg"
-        alt="Cartoon Illustration"
-        fill
-        className="object-contain animate-float"
-      />
-    </div>
-  </div>
 </section>
 
+      <main className="pt-28 max-w-6xl mx-auto px-6">
+       {/* Hero Section */}
 
-        {/* Swiper Section */}
+
+
         <section className="relative">
-          <Swiper
-            modules={[Autoplay]}
-            autoplay={{
-              delay: 1000,
-              disableOnInteraction: false,
-            }}
-            spaceBetween={10}
-            slidesPerView={1}
-            loop={true}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 4 },
-            }}
-            className="w-full"
-          >
-            {[
-              "cu.jpg",
-              "dcrust.jpg",
-              "gju.jpeg",
-              "lingyas.jpeg",
-              "mdu.avif",
-              "ymca",
-            
-            ].map((img, index) => (
-              <SwiperSlide key={index}>
-                <div className="relative w-full h-[300px] flex justify-center items-center">
-                  <Image
-                    src={`/assests/college/${img}`}
-                    alt={`App Screenshot ${index + 1}`}
-                    width={250}
-                    height={500}
-                    className="rounded-xl shadow-lg object-contain hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </section>
+      <Swiper
+        modules={[Autoplay]}
+        autoplay={{
+          delay: 3000, // ✅ smoother autoplay
+          disableOnInteraction: false,
+        }}
+        spaceBetween={10}
+        slidesPerView={1}
+        loop={true}
+        breakpoints={{
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 4 },
+        }}
+        className="w-full"
+      >
+        {images.map((img, index) => (
+          <SwiperSlide key={index}>
+            <div className="relative w-full h-[300px] flex justify-center items-center">
+              <Image
+                src={`/assets/college/${img}`} // ✅ fixed "assests" typo
+                alt={`College ${index + 1}`}
+                width={250}
+                height={500}
+                className="rounded-xl shadow-lg object-contain hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </section>
 
-      
 
         {/* Who We Serve Section */}
         <section className="py-10 md:py-16">
@@ -317,42 +320,42 @@ export default function Home() {
         title: "How to Connect with Alumni Effectively",
         author: "John Doe",
         time: "2 days ago",
-        image: "/assests/one.jpg",
+        image: "/assets/blog/one.jpg",
         excerpt: "Tips and strategies to engage alumni and build lasting relationships.",
       },
       {
         title: "Mentorship Programs that Work",
         author: "Jane Smith",
         time: "5 days ago",
-        image: "/assests/two.jpg",
+        image: "/assets/blog/two.jpg",
         excerpt: "Learn how mentorship programs can impact student growth.",
       },
       {
         title: "Top Placement Trends in 2025",
         author: "Alice Johnson",
         time: "1 week ago",
-        image: "/assests/three.jpg",
+        image: "/assets/blog/three.jpg",
         excerpt: "Insights and analytics on the latest placement trends for students.",
       },
       {
         title: "Networking Tips for Students",
         author: "Michael Brown",
         time: "3 days ago",
-        image: "/assests/one.jpg",
+        image: "/assets/blog/one.jpg",
         excerpt: "Practical advice for students to expand their professional network.",
       },
       {
         title: "Alumni Success Stories",
         author: "Sarah Williams",
         time: "4 days ago",
-        image: "/assests/two.jpg",
+        image: "/assets/blog/two.jpg",
         excerpt: "Highlighting inspiring stories from our alumni community.",
       },
       {
         title: "Building a Strong College Community",
         author: "David Lee",
         time: "1 week ago",
-        image: "/assests/three.jpg",
+        image: "/assets/blog/three.jpg",
         excerpt: "How colleges can foster a vibrant and supportive environment.",
       },
     ].map((blog, idx) => (
