@@ -6,10 +6,14 @@ const reviewSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
-    // to which type this review belongs
     reviewType: {
         type: String,
-        enum: ["alumni", "blogs", "college"],
+        enum: ["User", "Blog", "College"],
+        required: true,
+    },
+    entityId: {
+        type: mongoose.Schema.Types.ObjectId,
+        refPath: "reviewType",
         required: true,
     },
     review: {
@@ -27,5 +31,5 @@ const reviewSchema = new mongoose.Schema({
 
 })
 
-const Review = mongoose.model.Review || mongoose.model("Review", reviewSchema);
+const Review = mongoose.models.Review || mongoose.model("Review", reviewSchema);
 export default Review;

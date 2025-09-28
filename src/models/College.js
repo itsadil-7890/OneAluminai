@@ -17,15 +17,20 @@ const CollegeSchema = new mongoose.Schema({
         trim: true,
         unique: true
     },
-    location: {
+    address: {
         type: String,
+        required: true
+    },
+
+    pincode: {
+        type: Number,
         required: true
     },
     description: {
         type: String,
         required: true
     },
-    keyFeatures: [{
+    features: [{
         type: String,
         trim: true
     }],
@@ -39,10 +44,10 @@ const CollegeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    gallery: [
+    events: [
         {
-            type: String,
-            required: true
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Event"
         }
     ],
 
@@ -50,12 +55,6 @@ const CollegeSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Review"
-        }
-    ],
-    projects: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Project"
         }
     ],
     alumini: [
