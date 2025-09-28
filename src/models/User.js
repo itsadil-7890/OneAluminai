@@ -31,15 +31,14 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    collegeId: {
+    AISHE_code_college: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "College",
+        required: true
+    },
+    collegeId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "College"
-    },
-    college_AISHE_code: {
-        type: String,
-        required: true,
-        trim: true,
-        unique: true
     },
     about: {
         type: String,
@@ -61,10 +60,23 @@ const userSchema = new mongoose.Schema({
             ref: "Project"
         }
     ],
+    // for alluminai
     donations: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Donation"
+        }
+    ],
+    education: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Education"
+        }
+    ],
+    experience: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Experience"
         }
     ]
 });
