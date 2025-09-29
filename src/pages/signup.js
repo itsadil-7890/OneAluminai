@@ -3,9 +3,7 @@ import { FaEye, FaEyeSlash, FaRegistered } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-// sample adil testing
-
-const Register = () => { 
+const Register = () => {
   const roles = [
     {
       role: "Student",
@@ -31,10 +29,8 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white text-gray-900 flex flex-col">
-      {/* Navbar */}
       <Navbar />
 
-      {/* Register Section */}
       <main className="flex-grow flex pt-30 items-center justify-center px-4 py-12">
         <div className="bg-white/70 backdrop-blur-lg border border-gray-200 rounded-2xl shadow-lg w-full max-w-5xl flex flex-col md:flex-row-reverse overflow-hidden">
           {/* Image Section */}
@@ -88,110 +84,58 @@ const Register = () => {
 
             {/* Registration Form */}
             <form className="flex flex-col gap-4 mt-6 w-full md:max-w-[380px]">
-              {/* Name Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="firstName"
-                    className="text-gray-700 font-medium"
-                  >
-                    First Name<span className="text-blue-600 ml-1">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter first name"
-                    id="firstName"
-                    name="firstName"
-                    className="p-3 w-full border border-gray-300 rounded-lg bg-white/70 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {/* STUDENT FIELDS */}
+              {currentRole.role === "Student" && (
+                <>
+                  <Field label="First Name" required />
+                  <Field label="Last Name" required />
+                  <Field label="Date of Birth" type="date" required />
+                  <Field label="Mobile Number" required />
+                  <Field label="Email Address" type="email" required />
+                  <Field label="College Unique ID" required />
+                  <PasswordFields
+                    isPasswordVisible={isPasswordVisible}
+                    setIsPasswordVisible={setIsPasswordVisible}
+                    isConfirmPasswordVisible={isConfirmPasswordVisible}
+                    setIsConfirmPasswordVisible={setIsConfirmPasswordVisible}
                   />
-                </div>
+                </>
+              )}
 
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="lastName"
-                    className="text-gray-700 font-medium"
-                  >
-                    Last Name<span className="text-blue-600 ml-1">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter last name"
-                    id="lastName"
-                    name="lastName"
-                    className="p-3 w-full border border-gray-300 rounded-lg bg-white/70 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              {/* ALUMNI FIELDS */}
+              {currentRole.role === "Alumni" && (
+                <>
+                  <Field label="First Name" required />
+                  <Field label="Last Name" required />
+                  <Field label="Date of Birth" type="date" required />
+                  <Field label="Mobile Number" required />
+                  <Field label="College ID" required />
+                  <Field label="Passing Year" required />
+                  <PasswordFields
+                    isPasswordVisible={isPasswordVisible}
+                    setIsPasswordVisible={setIsPasswordVisible}
+                    isConfirmPasswordVisible={isConfirmPasswordVisible}
+                    setIsConfirmPasswordVisible={setIsConfirmPasswordVisible}
                   />
-                </div>
-              </div>
+                </>
+              )}
 
-              {/* Email Field */}
-              <div className="flex flex-col">
-                <label
-                  htmlFor="email"
-                  className="text-gray-700 font-medium"
-                >
-                  Email Address<span className="text-blue-600 ml-1">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  className="p-3 border border-gray-300 rounded-lg bg-white/70 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  autoComplete="off"
-                />
-              </div>
-
-              {/* Password Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="password"
-                    className="text-gray-700 font-medium"
-                  >
-                    Create Password<span className="text-blue-600 ml-1">*</span>
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={isPasswordVisible ? "text" : "password"}
-                      id="password"
-                      placeholder="Enter password"
-                      className="p-3 w-full border border-gray-300 rounded-lg bg-white/70 text-gray-900 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
-                    >
-                      {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="confirmPassword"
-                    className="text-gray-700 font-medium"
-                  >
-                    Confirm Password<span className="text-blue-600 ml-1">*</span>
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={isConfirmPasswordVisible ? "text" : "password"}
-                      id="confirmPassword"
-                      placeholder="Confirm password"
-                      className="p-3 w-full border border-gray-300 rounded-lg bg-white/70 text-gray-900 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
-                      }
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
-                    >
-                      {isConfirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {/* COLLEGE FIELDS */}
+              {currentRole.role === "College" && (
+                <>
+                  <Field label="College ID" required />
+                  <Field label="College Name" required />
+                  <Field label="Address" required />
+                  <Field label="College Email" type="email" required />
+                  <Field label="Pincode" required />
+                  <PasswordFields
+                    isPasswordVisible={isPasswordVisible}
+                    setIsPasswordVisible={setIsPasswordVisible}
+                    isConfirmPasswordVisible={isConfirmPasswordVisible}
+                    setIsConfirmPasswordVisible={setIsConfirmPasswordVisible}
+                  />
+                </>
+              )}
 
               {/* Submit Button */}
               <button
@@ -202,7 +146,6 @@ const Register = () => {
                 Register
               </button>
 
-              {/* Login Link */}
               <p className="text-end mt-2 text-sm text-gray-700 flex gap-1 justify-end">
                 Already have an account?
                 <a href="/login">
@@ -216,10 +159,76 @@ const Register = () => {
         </div>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
 };
+
+/* ✅ Field Component (label outside input) */
+const Field = ({ label, type = "text", required = false }) => (
+  <div className="flex flex-col">
+    <label className="text-gray-700 font-medium mb-1">
+      {label}
+      {required && <span className="text-blue-600 ml-1">*</span>}
+    </label>
+    <input
+      type={type}
+      placeholder={`Enter ${label.toLowerCase()}`}
+      className="p-3 w-full border border-gray-300 rounded-lg bg-white/70 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+);
+
+/* ✅ Reusable Password Input Component */
+const PasswordFields = ({
+  isPasswordVisible,
+  setIsPasswordVisible,
+  isConfirmPasswordVisible,
+  setIsConfirmPasswordVisible,
+}) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="flex flex-col">
+      <label className="text-gray-700 font-medium mb-1">
+        Password<span className="text-blue-600 ml-1">*</span>
+      </label>
+      <div className="relative">
+        <input
+          type={isPasswordVisible ? "text" : "password"}
+          placeholder="Enter password"
+          className="p-3 w-full border border-gray-300 rounded-lg bg-white/70 text-gray-900 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="button"
+          onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+        >
+          {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+    </div>
+
+    <div className="flex flex-col">
+      <label className="text-gray-700 font-medium mb-1">
+        Confirm Password<span className="text-blue-600 ml-1">*</span>
+      </label>
+      <div className="relative">
+        <input
+          type={isConfirmPasswordVisible ? "text" : "password"}
+          placeholder="Confirm password"
+          className="p-3 w-full border border-gray-300 rounded-lg bg-white/70 text-gray-900 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="button"
+          onClick={() =>
+            setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
+          }
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+        >
+          {isConfirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 export default Register;

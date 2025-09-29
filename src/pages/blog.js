@@ -51,13 +51,13 @@ export default function Blog() {
         </video>
         <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center px-6">
           <h1 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg">
-            Connect. Learn. Enjoy. 🎉
+            Connect. Learn. Enjoy. 
           </h1>
           <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl">
             Explore our upcoming blogs and create unforgettable experiences.
           </p>
           <button className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:opacity-90 transition">
-            Organize Your Event 🚀
+            Post Your Blog!
           </button>
         </div>
       </section>

@@ -15,9 +15,13 @@ export default function Home() {
     "cu.jpg",
     "dcrust.jpg",
     "gju.jpeg",
-    "lingyas.jpeg",
     "mdu.avif",
-    "ymca.jpg", // ✅ fixed extension
+    "uiet.webp",
+    "cu.jpg",
+    "dcrust.jpg",
+    "gju.jpeg",
+    "mdu.avif",
+    "uiet.webp"// ✅ fixed extension
   ];
 
   return (
@@ -33,7 +37,7 @@ export default function Home() {
     className="absolute inset-0 w-full h-full object-cover z-0"
     style={{ filter: "brightness(0.7) blur(0.7px)" }} // Slightly darken the video for better text contrast
   >
-    <source src="/assets/Videos/event-04.mp4" type="video/mp4" />
+    <source src="/assets/hero/hero.mp4" type="video/mp4" />
   </video>
 
   {/* Overlay (optional – remove if you don’t want any tint) */}
@@ -68,11 +72,8 @@ export default function Home() {
   </div>
 </section>
 
-      <main className="pt-28 max-w-6xl mx-auto px-6">
+      <main className="pt-10 max-w-7xl mx-auto px-6">
        {/* Hero Section */}
-
-
-
         <section className="relative">
       <Swiper
         modules={[Autoplay]}
@@ -80,24 +81,24 @@ export default function Home() {
           delay: 3000, // ✅ smoother autoplay
           disableOnInteraction: false,
         }}
-        spaceBetween={10}
+        spaceBetween={7}
         slidesPerView={1}
         loop={true}
         breakpoints={{
           640: { slidesPerView: 2 },
-          1024: { slidesPerView: 4 },
+          1024: { slidesPerView: 5 },
         }}
         className="w-full"
       >
         {images.map((img, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-[300px] flex justify-center items-center">
+            <div className="relative w-full h-[200px] flex justify-center items-center">
               <Image
                 src={`/assets/college/${img}`} // ✅ fixed "assests" typo
                 alt={`College ${index + 1}`}
                 width={250}
                 height={500}
-                className="rounded-xl shadow-lg object-contain hover:scale-105 transition-transform duration-300"
+                className="rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
           </SwiperSlide>
